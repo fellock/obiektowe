@@ -4,9 +4,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class SvgScene {
-	private Polygon[] polygons = new Polygon[0];
+	private Shape[] polygons = new Shape[0];
 
-	public void addPolygon(Polygon polygon) {
+	public void addShape(Shape polygon) {
 		polygons = Arrays.copyOf(polygons, polygons.length + 1);
 		polygons[polygons.length - 1] = polygon;
 	}
@@ -18,7 +18,7 @@ public class SvgScene {
 
 			writer.write("<html><body>");
 			writer.write(String.format(Locale.US, "<svg height=\"%f\" width=\"%f\">", rB.y, rB.x));
-			for (Polygon polygon : polygons) {
+			for (Shape polygon : polygons) {
 				writer.write(polygon.toSvg());
 			}
 			writer.write("</svg></body></html>");
@@ -35,7 +35,7 @@ public class SvgScene {
 		double tempX = 0.;
 		double tempY = 0.;
 
-		for (Polygon polygon : polygons) {
+		for (Shape polygon : polygons) {
 			Point tempPoint = polygon.rightBottom();
 
 			tempX = Math.max(tempX, tempPoint.x);

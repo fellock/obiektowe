@@ -1,10 +1,9 @@
-public class Polygon {
+public class Polygon extends Shape {
 	private Point[] points;
-	private Style style;
 
 	public Polygon(int vert, Style style) {
+		super(style);
 		points = new Point[vert];
-		this.style = style;
 	}
 
 	public Polygon(Style style, Point[] points) {
@@ -12,6 +11,7 @@ public class Polygon {
 		this.points = points;
 	}
 
+	//! do naprawienia
 	public static Polygon square(Line diagonal, Style style){
 		Point center = new Point((diagonal.getP1().x + diagonal.getP2().x)/2, (diagonal.getP1().y + diagonal.getP2().y)/2);
 		Polygon result = new Polygon(4, style);
