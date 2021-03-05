@@ -7,6 +7,11 @@ public class Polygon {
 		this.style = style;
 	}
 
+	public Polygon(Style style, Point[] points) {
+		this(0, style);
+		this.points = points;
+	}
+
 	public void setPoint(int index, Point p) {
 		points[index] = p;
 	}
@@ -25,9 +30,7 @@ public class Polygon {
 		return str;
 	}
 
-	public void toSvg() {
-		System.out.println(String.format(
-				"<svg height=\"210\" width=\"500\"><polygon points=\"%s\" style=\"%s\" /></svg>",
-				getPoints(), style.toSvg()));
+	public String toSvg() {
+		return String.format("<polygon points=\"%s\" style=\"%s\" />", getPoints(), style.toSvg());
 	}
 }
