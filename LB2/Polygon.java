@@ -33,4 +33,16 @@ public class Polygon {
 	public String toSvg() {
 		return String.format("<polygon points=\"%s\" style=\"%s\" />", getPoints(), style.toSvg());
 	}
+
+	public Point rightBottom() {
+		double tempX = 0.;
+		double tempY = 0.;
+
+		for (Point point : points) {
+			tempX = Math.max(tempX, point.x);
+			tempY = Math.max(tempY, point.y);
+		}
+
+		return new Point(tempX, tempY);
+	}
 }
