@@ -9,9 +9,9 @@ public class Zadanie2 {
 		Polygon C = new Polygon(new Style("orange", "red", 3.), C_points);
 
 		SvgScene scena = new SvgScene();
-		scena.addPolygon(A);
-		scena.addPolygon(B);
-		scena.addPolygon(C);
+		scena.addShape(A);
+		scena.addShape(B);
+		scena.addShape(C);
 
 		scena.saveHtml("Zadanie2.html");
 	}

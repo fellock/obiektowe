@@ -1,4 +1,3 @@
 # siema
 
-nawet nie próbujcie tego pobierać, wszystko jebnie, nic nie działa\
-poprawię po weekendzie
+już działa, ale na kampusie nie ma jeszcze tych rozwiązań więc nie mam do czego równać

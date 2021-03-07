@@ -3,9 +3,9 @@ public class Style {
 	public final Double strokeWidth;
 
 	public Style(String fillColor, String strokeColor, Double strokeWidth) {
-		this.fillColor = fillColor;
-		this.strokeColor = strokeColor;
-		this.strokeWidth = strokeWidth;
+		this.fillColor = fillColor != null ? fillColor : "none";
+		this.strokeColor = strokeColor != null ? strokeColor : "black";
+		this.strokeWidth = strokeWidth != null ? strokeWidth : 1.;
 	}
 
 	public String toSvg() {
@@ -17,6 +17,5 @@ public class Style {
 
 		return String.format("fill: %s;stroke: %s;stroke-width: %s", fillColor, strokeColor, strokeWidth);
 	}
-
 
 }

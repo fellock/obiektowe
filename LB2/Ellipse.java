@@ -12,7 +12,8 @@ public class Ellipse extends Shape {
 	}
 
 	public String toSvg() {
-		return String.format(Locale.US, "<ellipse cx=\"%f\" cy=\"%f\" rx=\"%f\" ry=\"%f\" style=\"%s\"", center.x, center.y, rX, rY, style.toSvg());
+		return String.format(Locale.US, "<ellipse cx=\"%f\" cy=\"%f\" rx=\"%f\" ry=\"%f\" style=\"%s\"", center.x,
+				center.y, rX, rY, style.toSvg());
 	}
 
 	public Point rightBottom() {

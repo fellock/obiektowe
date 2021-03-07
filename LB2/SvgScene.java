@@ -45,5 +45,4 @@ public class SvgScene {
 		return new Point(tempX, tempY);
 	}
 
-
 }

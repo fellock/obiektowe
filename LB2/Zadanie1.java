@@ -4,7 +4,8 @@ Zmodyfikuj klasę Polygon dodając do jej konstruktora argument Style i modyfiku
 public class Zadanie1 {
 	public static void main(String[] args) {
 		Polygon P = new Polygon(5, new Style("blue", "purple", 10.));
-		Point[] arr = {new Point(0, 0), new Point(0, 100), new Point(120, 120), new Point(200, 70), new Point(250, 40)};
+		Point[] arr = { new Point(0, 0), new Point(0, 100), new Point(120, 120), new Point(200, 70),
+				new Point(250, 40) };
 		P.setPoints(arr);
 		P.toSvg();
 	}

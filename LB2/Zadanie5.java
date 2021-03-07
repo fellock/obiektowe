@@ -15,7 +15,6 @@ public class Zadanie5 {
 		scena.addShape(C);
 		scena.addShape(E);
 
-
 		scena.saveHtml("Zadanie5.html");
 	}
 

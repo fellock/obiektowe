@@ -2,7 +2,7 @@ import java.lang.Math;
 import java.util.Locale;
 
 public class Line {
-	private static Point p1, p2;
+	private final Point p1, p2;
 
 	public Line(Point _p1, Point _p2) {
 		p1 = _p1;
@@ -22,13 +22,14 @@ public class Line {
 	}
 
 	public String toSvg() {
-		return String.format(Locale.US, "<svg height=\"210\" width=\"500\"><line x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:rgb(255,0,0);stroke-width:2\"/></svg>", p1.x, p1.y, p2.x, p2.y);
+		return String.format(Locale.US,
+				"<svg height=\"210\" width=\"500\"><line x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:rgb(255,0,0);stroke-width:2\"/></svg>",
+				p1.x, p1.y, p2.x, p2.y);
 	}
 
-	public Line[] perpendicular(Line l, Point p) {
-		return perpendicular(l, p, this.getLength());
+	public static Line[] perpendicular(Line l, Point p) {
+		return perpendicular(l, p, l.getLength());
 	}
-
 
 	public static Line[] perpendicular(Line l, Point p, double r) {
 		Point p1 = l.getP1();
