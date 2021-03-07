@@ -1,4 +1,2 @@
 # obiektowe
 Pliki z zajęć LB6 na obiektówce
-
-# DO NAPRAWIENIA, PRAWIE NIC NIE DZIAŁA, AAAAAAAAAAAAAAAAAAAAAAA
