@@ -26,4 +26,8 @@ public class SubjectInstance {
 	public List<Student> getStudents() {
 		return List.copyOf(students);
 	}
+
+	public int getLimit() {
+		return limit;
+	}
 }

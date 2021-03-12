@@ -41,4 +41,8 @@ public class Account {
 	public String getLogin() {
 		return login;
 	}
+
+	public String getLastName() {
+		return lastName;
+	}
 }
