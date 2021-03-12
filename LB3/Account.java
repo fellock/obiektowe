@@ -19,4 +19,8 @@ public class Account {
 		}
 		else return false;
 	}
+
+	public final String toString() {
+		return this.firstName + " " + this.lastName;
+	}
 }
