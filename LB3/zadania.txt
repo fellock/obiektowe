@@ -1,0 +1,67 @@
+Zadanie 1.
+
+Napisz klasę Account posiadającą prywatne pola login, password, firstName, lastName klasy String oraz lastLogin klasy LocalDate. Napisz konstruktor tej klasy ustawiający pola na wartości zmiennych oraz datę na 1.01.1970.
+
+Napisz metodę authorize, która przyjmie dwie zmienne klasy String i porówna je z polami login i password. Jeżeli się zgadzają należy zwrócić prawdę i ustawić lastLogin na aktualny czas. W przeciwnym razie należy zwrócić fałsz.
+
+
+Zadanie 2.
+
+Utwórz klasę Teacher dziedzicząca po Account, posiadającą dodatkowe pole title klasy String. Wszystkie pola należy ustawić konstruktorem. W klasie Account utwórz publiczną metodę toString zwracającą napis utworzony z imienia i nazwiska. W klasie Teacher powinien on dodatkowo zawierać tytuł. Po przetestowaniu, uczyń metodę klasy Account ostateczną.
+
+
+Zadanie 3.
+
+Do klasy Account dodaj prywatną, statyczną listę wszystkich istniejących kont. Jeżeli konto o loginie, który chcemy utworzyć już istnieje, należy do nowego loginu dopisać “1”. Do klasy Account dopisz konstruktor kopiujący, który wykonuje kopię konta z uwzględnieniem zasady niepowtarzania loginów.
+
+
+Zadanie 4.
+
+Napisz klasę Student dziedziczącą po Account. Klasa powinna posiadać dwa pola prywatne: course klasy String i startYear typu int oznaczające kierunek i rok rozpoczęcia studiów na nich. Napisz konstruktor ustawiający wszystkie pola na wartości argumentów.
+
+Napisz także metodę semester podającą numer semestru (1-10) na podstawie pola startYear i aktualnego czasu. Zakładamy, że student aktualnie studiuje, studiuje tylko na jednym kierunku oraz, że semestr zimowy zaczyna się 1.10, a semestr letni 1.02.
+
+
+Zadanie 5.
+
+Napisz klasę Subject reprezentującą przedmiot, posiadającą prywatne pola:
+
+name : String - nazwa przedmiotu,
+
+course : String - nazwa kierunku, na którym przedmiot jest prowadzony,
+
+semester : int - numer (1-10) semestru, na którym przedmiot jest prowadzony.
+
+Napisz konstruktor ustawiający wszystkie pola.
+
+
+Napisz klasę SubjectInstance reprezentującą przedmiot odbywający się w określonym roku:
+
+subject : Subject - przedmiot,
+
+year : int - rok prowadzenia, w przypadku semestru letniego rok wcześniejszy,
+
+teacher : Teacher - prowadzący,
+
+students : List<Student> - zapisani studenci,
+
+limit : int - limit zapisanych studentów
+
+Napisz konstruktor ustawiający wszystkie pola poza listą studentów. Napisz publiczną metodę enroll, która przyjmuje jako argument studenta. Jeżeli są miejsca, należy dopisać go do listy i zwrócić prawdę, a fałsz w przeciwnym przypadku. Napisz metodę, która zwróci kopię listy zapisanych studentów.
+
+
+Zadanie 6.
+
+Napisz interfejs Enroller definiujący funkcjonalność zapisu studentów na zajęcia udostępniający metody publiczne:
+
+clear() : void - usuwający poprzednie ustawienia,
+
+setSubjectInstance(SubjectInstance) : void - mutator ustawiający limit studentów,
+
+addStudent(Student) : void - metoda dodająca studenta do zapisu,
+
+process() : void - wykonanie procesu przypisania.
+
+Utwórz klasę AlphabeticEnroller, który zapisuje studentów alfabetycznie według ich nazwiska. Na potrzeby tej klasy, w klasie Account utwórz akcesor do nazwiska
+
+Utwórz klasę RandomEnroller, która w chwili wywołania metody addStudent przypisuje studentowi losowo wygenerowaną liczbę, a następnie przypisuje do zajęć tych, którzy otrzymali jej największa wartość.
