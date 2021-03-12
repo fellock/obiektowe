@@ -6,7 +6,7 @@ public class Teacher extends Account {
 		this.title = title;
 	}
 
-	/* public String toString() {
-		return title + " " + super.toString();
-	} */
+	/*
+	 * public String toString() { return title + " " + super.toString(); }
+	 */
 }
