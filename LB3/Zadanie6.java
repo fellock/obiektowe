@@ -19,16 +19,21 @@ public class Zadanie6 {
 		Student s3 = new Student("student", "pass", "Paweł", "A", "Informatyka", 2020);
 
 		AlphabeticEnroller AE = new AlphabeticEnroller(oop_1);
+		RandomEnroller RE = new RandomEnroller(oop_1);
 
 		AE.addStudent(s1);
 		AE.addStudent(s2);
 		AE.addStudent(s3);
 
+		RE.addStudent(s1);
+		RE.addStudent(s2);
+		RE.addStudent(s3);
+
 		AE.process();
+		RE.process();
 
 		System.out.println(AE.getStudents());
-
-		// ranndom enroller do dopisania
+		System.out.println(RE.getStudents());
 
 	}
 }
