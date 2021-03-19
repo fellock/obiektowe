@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Person {
 	private String name;
@@ -40,6 +42,43 @@ public class Person {
 		}
 
 		return new Person(_name, _birth, _death);
+	}
+
+	public static Person[] fromCSV(String path) {
+		BufferedReader reader;
+		String _name;
+		LocalDate _birth;
+		LocalDate _death;
+		String line;
+		String[] line_arr;
+		List<Person> persons = new ArrayList<>();
+
+		try {
+			reader = new BufferedReader(new FileReader(path));
+			while ((line = reader.readLine()) != null) {
+
+				_name = null;
+				_birth = null;
+				_death = null;
+
+				line_arr = line.split(";");
+
+				_name = line_arr[0];
+				_birth = stringToDate(line_arr[1]);
+				try {
+					_death = stringToDate(line_arr[2]);
+				} catch (ArrayIndexOutOfBoundsException e) {
+					_death = null;
+				}
+
+				persons.add(new Person(_name, _birth, _death));
+			}
+		} catch (IOException | NullPointerException | DateTimeParseException e) {
+			e.printStackTrace();
+		}
+
+		return persons.toArray(new Person[persons.size()]);
+
 	}
 
 	@Override
