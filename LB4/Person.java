@@ -1,5 +1,7 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -22,6 +24,10 @@ public class Person {
 		return LocalDate.parse(s, DateTimeFormatter.ofPattern("d.M.yyyy"));
 	}
 
+	private static String dateToString(LocalDate d) {
+		return d.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+	}
+
 	public static Person fromFile(String path) {
 		String _name = null;
 		LocalDate _birth = null;
@@ -42,6 +48,24 @@ public class Person {
 		}
 
 		return new Person(_name, _birth, _death);
+	}
+
+	public static void toFile(Person person, String path) {
+		BufferedWriter writer;
+
+		try {
+			writer = new BufferedWriter(new FileWriter(path));
+
+			if (person.death != null) {
+				writer.write(person.name + "\n" + dateToString(person.birth) + "\n" + dateToString(person.death));
+			} else {
+				writer.write(person.name + "\n" + dateToString(person.birth));
+			}
+
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static Person[] fromCSV(String path) {
@@ -72,7 +96,9 @@ public class Person {
 				}
 
 				persons.add(new Person(_name, _birth, _death));
+
 			}
+			reader.close();
 		} catch (IOException | NullPointerException | DateTimeParseException e) {
 			e.printStackTrace();
 		}
@@ -81,10 +107,29 @@ public class Person {
 
 	}
 
+	public static void toCSV(Person[] persons, String path) {
+		BufferedWriter writer;
+
+		try {
+			writer = new BufferedWriter(new FileWriter(path));
+
+			for (Person person : persons) {
+				writer.write(person.name + ";" + dateToString(person.birth) + ";");
+				if (person.death != null) {
+					writer.write(dateToString(person.death));
+				}
+				writer.write("\n");
+			}
+
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	@Override
 	public String toString() {
 		return "Person [birth=" + birth + ", death=" + death + ", name=" + name + "]";
 	}
-
 
 }
