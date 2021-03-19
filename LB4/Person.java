@@ -3,6 +3,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class Person {
 	private String name;
@@ -16,7 +17,7 @@ public class Person {
 	}
 
 	private static LocalDate stringToDate(String s) {
-		return LocalDate.parse(s, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+		return LocalDate.parse(s, DateTimeFormatter.ofPattern("d.M.yyyy"));
 	}
 
 	public static Person fromFile(String path) {
@@ -34,7 +35,7 @@ public class Person {
 
 			reader.close();
 
-		} catch (IOException | NullPointerException e) {
+		} catch (IOException | NullPointerException | DateTimeParseException e) {
 			e.printStackTrace();
 		}
 
