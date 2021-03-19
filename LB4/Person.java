@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -130,6 +131,43 @@ public class Person {
 	@Override
 	public String toString() {
 		return "Person [birth=" + birth + ", death=" + death + ", name=" + name + "]";
+	}
+
+	private static void purgeDirectory(File dir) {
+		for (File file : dir.listFiles()) {
+			if (file.isDirectory())
+				purgeDirectory(file);
+			file.delete();
+		}
+	}
+
+	public static void toDirectory(Person[] persons, String path) {
+		File directory = new File(path);
+
+		if (!directory.exists()) {
+			directory.mkdirs();
+		} else {
+			purgeDirectory(directory);
+		}
+
+		for (Person person : persons) {
+			toFile(person, path + "/" + person.name + ".txt");
+		}
+	}
+
+	public static Person[] fromDirectory(String path) {
+		List<Person> persons = new ArrayList<>();
+		File directory = new File(path);
+
+		if (directory.exists()) {
+			for (File file : directory.listFiles()) {
+				persons.add(fromFile(file.getPath()));
+			}
+
+			return persons.toArray(new Person[persons.size()]);
+		} else {
+			return null;
+		}
 	}
 
 }
