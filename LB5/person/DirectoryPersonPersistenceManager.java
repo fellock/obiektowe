@@ -8,22 +8,28 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DirectoryPersonPersistenceManager implements PersonPersistenceManager {
 
 	@Override
-	public Person[] load(String path) {
-		List<Person> persons = new ArrayList<>();
+	public Person[] load(String path) throws AmbigiousPersonException {
 		File directory = new File(path);
+		Map<String, TempPerson> persons = new HashMap<>();
 
 		if (directory.exists()) {
 			for (File file : directory.listFiles()) {
-				persons.add(fromFile(file.getPath()));
+				TempPerson tempPerson = fromFile(file.getPath());
+
+				if (persons.containsKey(tempPerson.name)) {
+					throw new AmbigiousPersonException(tempPerson.getPath(), persons.get(tempPerson.name).getPath());
+				} else {
+					persons.put(tempPerson.name, tempPerson);
+				}
 			}
 
-			return persons.toArray(new Person[persons.size()]);
+			return persons.values().toArray(new Person[persons.size()]);
 		} else {
 			return null;
 		}
@@ -44,7 +50,7 @@ public class DirectoryPersonPersistenceManager implements PersonPersistenceManag
 		}
 	}
 
-	public Person fromFile(String path) {
+	public TempPerson fromFile(String path) {
 		String _name = null;
 		LocalDate _birth = null;
 		LocalDate _death = null;
@@ -63,9 +69,8 @@ public class DirectoryPersonPersistenceManager implements PersonPersistenceManag
 			e.printStackTrace();
 		}
 
-		return new Person(_name, _birth, _death);
+		return new TempPerson(_name, _birth, _death, path);
 	}
-
 
 	void purgeDirectory(File dir) {
 		for (File file : dir.listFiles()) {
@@ -75,7 +80,6 @@ public class DirectoryPersonPersistenceManager implements PersonPersistenceManag
 		}
 	}
 
-
 	public static void toFile(Person person, String path) {
 		BufferedWriter writer;
 
@@ -83,7 +87,8 @@ public class DirectoryPersonPersistenceManager implements PersonPersistenceManag
 			writer = new BufferedWriter(new FileWriter(path));
 
 			if (person.death != null) {
-				writer.write(person.name + "\n" + Person.dateToString(person.birth) + "\n" + Person.dateToString(person.death));
+				writer.write(person.name + "\n" + Person.dateToString(person.birth) + "\n"
+						+ Person.dateToString(person.death));
 			} else {
 				writer.write(person.name + "\n" + Person.dateToString(person.birth));
 			}
