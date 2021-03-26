@@ -2,16 +2,26 @@ package person;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Person {
 	String name;
 	LocalDate birth;
 	LocalDate death;
+	List<Person> parents = new ArrayList<>();
 
 	Person(String name, LocalDate birth, LocalDate death) {
 		this.name = name;
 		this.birth = birth;
 		this.death = death;
+	}
+
+	Person(String name, LocalDate birth, LocalDate death, List<Person> parents) {
+		this.name = name;
+		this.birth = birth;
+		this.death = death;
+		this.parents = parents;
 	}
 
 	static LocalDate stringToDate(String s) {

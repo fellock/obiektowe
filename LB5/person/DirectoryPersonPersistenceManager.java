@@ -8,7 +8,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DirectoryPersonPersistenceManager implements PersonPersistenceManager {
@@ -27,6 +29,10 @@ public class DirectoryPersonPersistenceManager implements PersonPersistenceManag
 				} else {
 					persons.put(tempPerson.name, tempPerson);
 				}
+			}
+
+			for (Map.Entry<String, TempPerson> person : persons.entrySet()) {
+				person.getValue().convertParents(persons);
 			}
 
 			return persons.values().toArray(new Person[persons.size()]);
@@ -54,6 +60,8 @@ public class DirectoryPersonPersistenceManager implements PersonPersistenceManag
 		String _name = null;
 		LocalDate _birth = null;
 		LocalDate _death = null;
+		List<String> _parents = new ArrayList<>();
+		String tempLine, tempLine2;
 		BufferedReader reader;
 
 		try {
@@ -61,7 +69,39 @@ public class DirectoryPersonPersistenceManager implements PersonPersistenceManag
 
 			_name = reader.readLine();
 			_birth = Person.stringToDate(reader.readLine());
-			_death = Person.stringToDate(reader.readLine());
+			tempLine = reader.readLine();
+
+			if (tempLine != null) {
+				if (tempLine.equals("Rodzice:")) {
+					// rodzice
+					_parents.add(reader.readLine());
+
+					// sprawdzam czy drugi rodzic jest podany
+					tempLine2 = reader.readLine();
+					if (tempLine2 != null) {
+						_parents.add(tempLine2);
+					}
+
+				} else {
+					// śmierć i/lub rodzice
+					_death = Person.stringToDate(tempLine);
+					tempLine = reader.readLine();
+
+					if (tempLine != null) {
+						if (tempLine.equals("Rodzice: ")) {
+							// rodzice
+							_parents.add(reader.readLine());
+
+							// sprawdzam czy drugi rodzic jest podany
+							tempLine2 = reader.readLine();
+							if (tempLine2 != null) {
+								_parents.add(tempLine2);
+							}
+
+						}
+					}
+				}
+			}
 
 			reader.close();
 
@@ -69,7 +109,7 @@ public class DirectoryPersonPersistenceManager implements PersonPersistenceManag
 			e.printStackTrace();
 		}
 
-		return new TempPerson(_name, _birth, _death, path);
+		return new TempPerson(_name, _birth, _death, _parents, path);
 	}
 
 	void purgeDirectory(File dir) {
