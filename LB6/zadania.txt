@@ -1,0 +1,47 @@
+Zadanie 1.
+
+Zaprogramuj listę jednostronnie wiązaną, której węzłem będzie obiekt składający się z obiektu String oraz referencji na kolejny węzeł w liście. W klasie listy powinna znaleźć się referencja na pierwszy węzeł.
+
+Zaprogramuj metody publiczne:
+
+String first() - zwracającą napis z pierwszego obiektu listy,
+
+void prepend(String) - wstawiającą napis na początek listy,
+
+void removeFirst() - usuwającą pierwszy węzeł listy.
+
+
+Zadanie 2.
+
+Napisz testy sprawdzające poprawność dodania oraz usunięcia pojedynczego elementu listy. Rozważ przypadki, gdy tablica posiada jeden oraz wiele elementów.
+
+
+Zadanie 3.
+
+Niech metody first i removeFirst rzucają wyjątek IndexOutOfBoundsException, jeżeli lista jest pusta. Napisz test sprawdzający rzucanie tego wyjątku.
+
+
+Zadanie 4.
+
+Do klasy listy dodaj referencję na ostatni węzeł oraz metody publiczne:
+
+String last() - zwracającą napis z ostatniego węzła listy,
+
+void append(String) - wstawiającą napis na koniec listy,
+
+void removeLast() - usuwającą ostatni węzeł listy.
+
+Uwzględnij rzucanie wyjątku IndexOutOfBoundsException dla pustej listy. Napisz testy analogiczne do stworzonych w zadaniu 2 i 3.
+
+
+Zadanie 5.
+
+Napisz metody publiczne:
+
+get(int) - zwracającą wartość z węzła o podanym indeksie,
+
+insert(String, int) - tworzący węzeł przed wskazanym indeksem i ustawiający tam dany argumentem napis,
+
+remove(int) - usuwającą węzeł listy o wskazanym indeksie.
+
+Napisz co najmniej jeden test dla każdej z zaprogramowanych metod. Rozważ sytuację, gdy lista nie posiada węzła o danym indeksie.
