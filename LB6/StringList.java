@@ -10,38 +10,84 @@ public class StringList {
 		}
 	}
 
-	private Node head;
+	private Node head, tail;
 
 	public StringList() {
 		this.head = null;
+		this.tail = null;
 	}
 
-	public boolean checkIfEmpty() {
-		if (this.head == null) {
-			try {
-				throw new IndexOutOfBoundsException("List jest pusta");
-			} catch (IndexOutOfBoundsException e) {
-				e.printStackTrace();
-				return true;
-			}
-		} else {
-			return false;
-		}
+	public boolean isEmpty() {
+		return this.head == null;
+	}
+
+	public void throwIfEmpty() {
+		if (isEmpty())
+			throw new IndexOutOfBoundsException("List jest pusta");
 	}
 
 	public String first() {
-		checkIfEmpty();
+		throwIfEmpty();
 		return head.value;
 	}
 
 	public void prepend(String value) {
-		head = new Node(value, head);
+		if (isEmpty()) {
+			head = new Node(value, head);
+			tail = head;
+		} else {
+			head = new Node(value, head);
+		}
 	}
 
 	public void removeFirst() {
-		if (this.head == null)
-			throw new IndexOutOfBoundsException();
+		throwIfEmpty();
+
+		if (head == tail)
+			tail = null;
+
 		head = head.next;
+	}
+
+	public String last() {
+		throwIfEmpty();
+		return tail.value;
+	}
+
+	public void append(String value) {
+		if (isEmpty()) {
+			prepend(value);
+		} else {
+			tail.next = new Node(value, null);
+			tail = tail.next;
+		}
+	}
+
+	public void removeLast() {
+		throwIfEmpty();
+
+		if (head == tail) {
+			removeFirst();
+		} else {
+			Node tmp = head;
+			while (tmp.next != tail)
+				tmp = tmp.next;
+			tmp.next = null;
+			tail = tmp;
+		}
+
+	}
+
+	public String get(int index) {
+		Node tmp = head;
+		int i = 0;
+		while (i != index && tmp != null) {
+			tmp = tmp.next;
+			i++;
+		}
+		if (tmp == null)
+			throw new IndexOutOfBoundsException("Indeks poza granicami listy");
+		return tmp.value;
 	}
 
 }

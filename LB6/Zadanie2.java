@@ -14,13 +14,13 @@ public class Zadanie2 {
 	}
 
 	@Test
-	public void testSinglePrepend() {
+	void testSinglePrepend() {
 		list.prepend("1");
 		Assertions.assertEquals("1", list.first());
 	}
 
 	@Test
-	public void testMultiplePrepend() {
+	void testMultiplePrepend() {
 		list.prepend("1");
 		list.prepend("2");
 		Assertions.assertEquals("2", list.first());

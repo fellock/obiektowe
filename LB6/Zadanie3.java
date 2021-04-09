@@ -13,12 +13,12 @@ public class Zadanie3 {
 	}
 
 	@Test
-	void testFirst() {
+	void testFirstGivenEmpty() {
 		Assertions.assertThrows(IndexOutOfBoundsException.class, list::first);
 	}
 
 	@Test
-	void testRemoveFirst() {
+	void testRemoveFirstGivenEmpty() {
 		Assertions.assertThrows(IndexOutOfBoundsException.class, list::removeFirst);
 	}
 }
