@@ -1,5 +1,9 @@
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
@@ -14,7 +18,6 @@ public class DeathCauseStatisticList {
 	public void repopulate(String path) {
 		causeStatisticMap.clear();
 		Scanner scanner = null;
-
 		try {
 			scanner = new Scanner(new File(path), "utf-8");
 
@@ -29,6 +32,11 @@ public class DeathCauseStatisticList {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
 
+	public List<DeathCauseStatistic> mostDeadlyDiseases(int age, int n) {
+		List<DeathCauseStatistic> diseases = new ArrayList<>(causeStatisticMap.values());
+		Collections.sort(diseases, Comparator.comparing((DeathCauseStatistic x) -> x.getAgeBracket(age).deathCount).reversed());
+		return diseases.subList(0, n);
 	}
 }
