@@ -20,7 +20,7 @@ public class DeathCauseStatistic {
 		String[] deathStrings = Arrays.copyOfRange(stringArray, 2, 22);
 		int[] deathInts = new int[20];
 
-		for (int i = 0;i < 20;i++){
+		for (int i = 0; i < 20; i++) {
 			if (deathStrings[i].equals("-")) {
 				deathInts[i] = 0;
 			} else {
@@ -29,5 +29,19 @@ public class DeathCauseStatistic {
 		}
 
 		return new DeathCauseStatistic(ICD, deathInts);
+	}
+
+	public AgeBracketDeaths getAgeBracket(int age) {
+		return new AgeBracketDeaths(age / 5 * 5, age / 5 * 5 + 4, deaths[age / 5]);
+	}
+
+	public class AgeBracketDeaths {
+		public final int young, old, deathCount;
+
+		public AgeBracketDeaths(int young, int old, int deathCount) {
+			this.young = young;
+			this.old = old;
+			this.deathCount = deathCount;
+		}
 	}
 }
