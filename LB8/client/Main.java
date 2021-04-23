@@ -10,6 +10,9 @@ public class Main {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
 		try {
+			String username = reader.readLine();
+			serverThread.login(username);
+
 			while (true) {
 				String message = reader.readLine();
 				serverThread.send(message);

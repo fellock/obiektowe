@@ -1,0 +1,78 @@
+Zadanie 1.
+
+Napisz serwer czatu sieciowego. Powinien on pozwalać dołączyć dowolnej liczbie użytkowników. Serwer powinien oczekiwać na wiadomość od klientów i rozsyłać ją wszystkim pozostałym klientom.
+
+
+Zadanie 2.
+
+Napisz klienta czatu sieciowego, który przy włączeniu zapyta użytkownika o jego nazwę. Powinien on przesłać ją serwerowi w postaci wiadomości:
+
+$login nazwa_użytkownika
+
+W nazwie użytkownika niedopuszczalne są spacje. Na tym etapie czynimy założenie, że nazwa użytkownika na serwerze jest unikalna.
+
+Użytkownik po zalogowaniu powinien otrzymać możliwość wysłania do serwera kilku komend. Zaprogramuj pierwszą z nich - broadcast:
+
+Użytkownik wpisuje dowolny tekst wiadomości,
+
+Klient wysyła ją serwerowi w postaci: $broadcast treść wiadomości,
+
+Serwer rozsyła ją pozostałym klientom w postaci: $broadcast nazwa_nadawcy treść wiadomości.
+
+Klienci wyświetlają ją jako nazwa_nadawcy: treść wiadomości.
+
+
+Zadanie 3.
+
+Zaprogramuj komendę list służącej do wyświetlenia listy zalogowanych użytkowników:
+
+Użytkownik wpisuje napis: /list.
+
+Klient wysyła ją serwerowi w postaci $list.
+
+Serwer odpowiada klientowi w postaci $list nazwa_użytkownika1 nazwa_użytkownika2 …
+
+Klient wyświetla listę użytkowników, każdego w osobnej linii.
+
+Zaprogramuj komendę private służącą do wysyłania wiadomości do określonego użytkownika:
+
+Użytkownik wpisuje: /w nazwa_odbiorcy treść wiadomości,
+
+Klient wysyła ją serwerowi w postaci: $private nazwa_odbiorcy treść wiadomości,
+
+Serwer wysyła ją odbiorcy w postaci: $private nazwa_nadawcy treść wiadomości.
+
+Klient odbiorcy wyświetla ją jako [private] nazwa_nadawcy: treść wiadomości.
+
+Jeżeli adresat nie jest zalogowany, wiadomość do niego należy zignorować.
+
+
+Zadanie 4.
+
+Zaprogramuj komendę logout służącą do wylogowania użytkownika:
+
+Użytkownik wpisuje: /logout,
+
+Klient wysyła serwerowi wiadomość $logout,
+
+Klient użytkownika wyłącza się,
+
+Serwer zamyka jego połączenie.
+
+Serwer powinien rozsyłać wszystkim użytkownikom wiadomości:
+
+$login nazwa_użytkownika,
+
+$logout nazwa_użytkownika.
+
+reagując na dołączenia i odłączenia klienci powinni przedstawiać te wiadomości jako nazwa_użytkownika connected i nazwa_użytkownika disconnected.
+
+
+Zadanie 5.
+
+Zmodyfikuj serwer, aby uwzględniał istnienie pliku tekstowego w którym w kolejnych liniach znajdować się będą loginy i hasła użytkowników. Zmodyfikuj komendę login, aby miała postać: $login nazwa_użytkownika hasło_użytkownika. Jeżeli zostaną podane złe dane, serwer powinien odpowiedzieć: $bad_credentials, co powinno skutkować wyświetleniem stosownej informacji przez klienta i zakończenie jego działania.
+
+
+Zadanie 6.
+
+Zmodyfikuj serwer, aby w przypadku wysłania prywatnej wiadomości do niezalogowanego użytkownika, została ona zapisana w pamięci tymczasowej serwera. Jeżeli taki użytkownik zaloguje się, powinien otrzymać od razu wszystkie oczekujące wiadomości.

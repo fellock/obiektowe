@@ -10,6 +10,11 @@ public class ClientThread extends Thread {
 	private Socket socket;
 	private PrintWriter writer;
 	private Server server;
+	private String username;
+
+	public String getUsername() {
+		return username;
+	}
 
 	public ClientThread(Socket socket, Server server) {
 		this.socket = socket;
@@ -26,7 +31,11 @@ public class ClientThread extends Thread {
 
 			while (true) {
 				String message = reader.readLine();
-				System.out.println(message);
+
+				if (isCommand(message)) {
+					runCommand(message);
+				}
+
 				server.broadcast(this, message);
 			}
 
@@ -37,5 +46,24 @@ public class ClientThread extends Thread {
 
 	public void send(String message) {
 		writer.println(message);
+	}
+
+	private boolean isCommand(String message) {
+		return (!message.isEmpty() && message.startsWith("$") && message != null);
+	}
+
+	private void runCommand(String message) {
+		String[] messageList = message.split(" ");
+		String command = messageList[0];
+
+		switch (command) {
+			default:
+				System.out.println("ERROR: Nieznana komenda");
+				break;
+			case "$login":
+				username = messageList[1];
+				System.out.println("Ustawiono nick na " + username);
+				break;
+		}
 	}
 }

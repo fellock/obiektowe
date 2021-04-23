@@ -40,4 +40,8 @@ public class ServerThread extends Thread {
 		writer.println(message);
 	}
 
+	public void login(String message) {
+		send("$login " + message);
+	}
+
 }
