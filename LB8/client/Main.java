@@ -15,7 +15,7 @@ public class Main {
 
 			while (true) {
 				String message = reader.readLine();
-				serverThread.send(message);
+				serverThread.send(username, message);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

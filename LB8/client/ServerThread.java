@@ -36,12 +36,32 @@ public class ServerThread extends Thread {
 
 	}
 
-	public void send(String message) {
-		writer.println(message);
+	public void send(String username, String message) {
+		if (isCommand(message)) {
+			runCommand(message);
+		} else {
+			writer.println("$broadcast [" + username + "]: " + message);
+		}
 	}
 
 	public void login(String message) {
-		send("$login " + message);
+		writer.println("$login " + message);
+	}
+
+	private boolean isCommand(String message) {
+		return (!message.isEmpty() && message.startsWith("/") && message != null);
+	}
+
+	private void runCommand(String message) {
+		String[] messageList = message.split(" ", 2);
+		String command = messageList[0];
+		String argument = messageList[1];
+
+		switch (command) {
+			default:
+				System.out.println("ERROR: Nieznana komenda");
+				break;
+		}
 	}
 
 }

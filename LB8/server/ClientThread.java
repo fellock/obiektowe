@@ -35,8 +35,6 @@ public class ClientThread extends Thread {
 				if (isCommand(message)) {
 					runCommand(message);
 				}
-
-				server.broadcast(this, message);
 			}
 
 		} catch (IOException e) {
@@ -53,16 +51,21 @@ public class ClientThread extends Thread {
 	}
 
 	private void runCommand(String message) {
-		String[] messageList = message.split(" ");
+		String[] messageList = message.split(" ", 2);
 		String command = messageList[0];
+		String argument = messageList[1];
 
 		switch (command) {
 			default:
 				System.out.println("ERROR: Nieznana komenda");
 				break;
 			case "$login":
-				username = messageList[1];
+				username = argument;
 				System.out.println("Ustawiono nick na " + username);
+				break;
+			case "$broadcast":
+				server.broadcast(this, argument);
+				System.out.println(username + " is broadcasting " + argument);
 				break;
 		}
 	}
