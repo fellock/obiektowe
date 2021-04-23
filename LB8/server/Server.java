@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Server {
 	private ServerSocket socket;
-	private List<Client> clients = new ArrayList<>();
+	private List<ClientThread> clients = new ArrayList<>();
 
 	public Server(int port) {
 		try {
@@ -22,7 +22,7 @@ public class Server {
 		while (true) {
 			try {
 				Socket clientSocket = socket.accept();
-				Client clientThread = new Client(clientSocket, this);
+				ClientThread clientThread = new ClientThread(clientSocket, this);
 				clients.add(clientThread);
 				clientThread.start();
 
@@ -32,8 +32,8 @@ public class Server {
 		}
 	}
 
-	public void broadcast(Client from, String message) {
-		for (Client client: clients) {
+	public void broadcast(ClientThread from, String message) {
+		for (ClientThread client: clients) {
 			if (client != from) {
 				client.send(message);
 			}

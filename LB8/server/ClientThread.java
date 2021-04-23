@@ -8,12 +8,12 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class Client extends Thread {
+public class ClientThread extends Thread {
 	private Socket socket;
 	private PrintWriter writer;
 	private Server server;
 
-	public Client(Socket socket, Server server) {
+	public ClientThread(Socket socket, Server server) {
 		this.socket = socket;
 		this.server = server;
 	}
