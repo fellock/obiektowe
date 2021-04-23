@@ -6,14 +6,16 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class ClientThread extends Thread {
+public class ServerThread extends Thread {
 	private Socket socket;
 	private PrintWriter writer;
-	private Server server;
 
-	public ClientThread(Socket socket, Server server) {
-		this.socket = socket;
-		this.server = server;
+	public ServerThread(String ip, int port) {
+		try {
+			this.socket = new Socket(ip, port);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -27,15 +29,15 @@ public class ClientThread extends Thread {
 			while (true) {
 				String message = reader.readLine();
 				System.out.println(message);
-				server.broadcast(this, message);
 			}
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	public void send(String message) {
 		writer.println(message);
 	}
+
 }
