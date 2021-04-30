@@ -1,6 +1,7 @@
 import java.io.File;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,5 +40,18 @@ public class FileCommander {
 		Collections.sort(files);
 
 		return Stream.concat(dirs.stream(), files.stream()).collect(Collectors.toList());
+	}
+
+	public List<String> find(String sequence) {
+		List<File> files = Arrays.asList(new File(pwd()).listFiles());
+		List<String> out = new ArrayList<>();
+
+		for (File file : files) {
+			out.add(file.toString());
+		}
+
+		out.removeIf(a -> !a.contains(sequence));
+
+		return out;
 	}
 }
