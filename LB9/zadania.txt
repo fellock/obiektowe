@@ -1,0 +1,52 @@
+Zadanie 1.
+
+Utwórz obiekt FileCommander przechowujący ścieżkę do katalogu w postaci prywatnego pola typu Path. Napisz konstruktor, który ustawia tą ścieżkę w katalogu domowym.
+
+W klasie zdefiniuj metody publiczne:
+
+pwd, zwracającą napis zawierający aktualną ścieżkę,
+
+cd, przyjmującą ścieżkę i zmieniającą tą ścieżkę względem dotychczas aktualnej.
+
+
+Zadanie 2.
+
+W klasie FileCommander napisz metodę ls, która zwraca listę napisów zawierających nazwy plików i katalogów w aktualnej ścieżce. Następnie, krok po kroku, zmodyfikuj tą metodę tak, aby:
+
+wyniki zostały posortowane alfabetycznie,
+
+nazwy katalogów były otoczone znakami [ ],
+
+wyniki zostały posortowane tak, aby katalogi były przed plikami
+
+wyniki zostały posortowane tak, aby katalogi były przed plikami, a dodatkowo obie grupy były posortowane alfabetycznie.
+
+
+Zadanie 3.
+
+W klasie FileCommander napisz metodę find, która przyjmie argument napisowy. Metoda powinna zwrócić listę napisów zawierających pełne ścieżki wszystkich plików, które znajdują się w aktualnej ścieżce i zawierają w nazwie podany argument.
+
+
+Zadanie 4.
+
+Napisz klasę FileCommanderCLI, która przymie jako parametry konstruktora strumień wejściowy i strumień wyjściowy. Konstruktor powinien utworzyć obiekt klasy FileCommander i przechowywać go w prywatnym polu klasy. Klasa powinna posiadać dwie metody:
+
+publiczną, bezargumentową eventLoop, w której ze strumienia wejściowego pobierane są linie napisów. Metoda ta powinna wywoływać kolejną metodę:
+
+prywatną, runCommand, przyjmującą pobraną linię, interpretującą ją jako wywołanie jednej z funkcjonalności klasy FileCommander, tj., pwd, cd <argument>, ls, find <argument>. Metoda ta powinna wywołać odpowiednią metodę obiektu FileCommander i wyświetlić listę wynikową na strumieniu wejściowym. Do rozróżnienia między poleceniami użyj instrukcji switch.
+
+Utwórz obiekt klasy FileCommanderCLI przekazując mu jako parametry standardowe strumienie wejścia i wyjścia.
+
+
+Zadanie 5.
+
+Utwórz klasę Server przyjmującą połączenia sieciowe oraz klasę ClientThread obsługującą pojedynczego klienta. Klasa ClientThread powinna utworzyć obiekt FileCommanderCLI, przekazując mu jako argumenty strumienie gniazda sieciowego. Metoda run klasy ClientThread powinna wywoływać metodę eventLoop. Przetestuj działanie programu z użyciem telnetu.
+
+
+Zadanie 6.
+
+Dodaj do klasy FileCommander metodę archive, która przyjmuje listę napisów zawierających ścieżki do plików, a zwraca obiekt File będący tymczasowym plikiem. Plik powinien stanowić archiwum zip zawierające pliki dane ścieżkami. Zakładamy, że ścieżki są poprawne i znajdują się pod nimi pliki, a nie katalogi.
+
+W analogii do poprzednich metod umożliw wywołanie tej komendy z użyciem połączenia sieciowego. Jako odpowiedź należy wysłać najpierw rozmiar pliku, a następnie dane pliku.
+
+Napisz klienta działającego w trybie synchronicznym, który będzie w stanie otrzymać i zapisać otrzymany plik (należy pominąć pozostałe funkcjonalności serwera). Podczas pobierania pliku powinien on wyświetlać procent pobranych danych.
