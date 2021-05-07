@@ -1,11 +1,17 @@
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 public class FileCommander {
 	private Path path;
@@ -53,5 +59,25 @@ public class FileCommander {
 		out.removeIf(a -> !a.contains(sequence));
 
 		return out;
+	}
+
+	public File archive(List<String> paths) throws IOException {
+		File tmp = File.createTempFile("archive", ".zip");
+		FileOutputStream fileOut = new FileOutputStream(tmp);
+		ZipOutputStream zipOut = new ZipOutputStream(fileOut);
+
+		for (String path : paths) {
+			FileInputStream inputStream = new FileInputStream(String.valueOf(this.path.resolve(path)));
+			ZipEntry zipEntry = new ZipEntry(Paths.get(path).getFileName().toString());
+			zipOut.putNextEntry(zipEntry);
+			byte[] buffer = new byte[1024];
+
+			for (int x = inputStream.read(buffer); x >= 0; x = inputStream.read(buffer)) {
+				zipOut.write(buffer, 0, x);
+			}
+			inputStream.close();
+		}
+
+		return tmp;
 	}
 }
