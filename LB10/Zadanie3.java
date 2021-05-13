@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -18,6 +20,7 @@ public class Zadanie3 {
 	private JMenuBar menuBar;
 	private JToolBar toolBar;
 	private JTextArea textArea;
+	private String filename = null;
 
 	public Zadanie3() {
 		frame = new JFrame("Zadanie 3");
@@ -44,9 +47,10 @@ public class Zadanie3 {
 			public void actionPerformed(ActionEvent e) {
 				FileDialog fileDialog = new FileDialog(frame, "Choose a file", FileDialog.LOAD);
 				fileDialog.setVisible(true);
-				String filename = fileDialog.getFile();
+				filename = fileDialog.getFile();
 				if (filename != null) {
 					try {
+						frame.setTitle("Zadanie 3: " + filename);
 						textArea.read(new BufferedReader(new FileReader(filename)), null);
 						textArea.requestFocus();
 					} catch (Exception x) {
@@ -62,10 +66,11 @@ public class Zadanie3 {
 			public void actionPerformed(ActionEvent e) {
 				FileDialog fileDialog = new FileDialog(frame, "Save a file", FileDialog.SAVE);
 				fileDialog.setVisible(true);
-				String filename = fileDialog.getFile();
+				filename = fileDialog.getFile();
 				if (filename != null) {
 					try {
-						textArea.write(new FileWriter(fileDialog.getFile()));
+						frame.setTitle("Zadanie 3: " + filename);
+						textArea.write(new FileWriter(filename));
 					} catch (Exception x) {
 						x.printStackTrace();
 					}
@@ -73,13 +78,46 @@ public class Zadanie3 {
 			}
 		});
 
+		JMenuItem saveMenuItem = new JMenuItem("Save");
+		saveMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (filename != null) {
+					try {
+						textArea.write(new FileWriter(filename));
+					} catch (Exception x) {
+						x.printStackTrace();
+					}
+				} else {
+					saveAsMenuItem.getActionListeners()[0].actionPerformed(e);
+				}
+			}
+		});
+
 		menu.add(openMenuItem);
+		menu.add(saveMenuItem);
 		menu.add(saveAsMenuItem);
 		menu.add(closeMenuItem);
 		menuBar.add(menu);
 
 		toolBar = new JToolBar();
 		toolBar.setAlignmentX(JToolBar.LEFT_ALIGNMENT);
+
+		JButton openButton = new JButton(new ImageIcon("folder.png"));
+		openButton.setToolTipText("Open a file");
+		openButton.addActionListener(openMenuItem.getActionListeners()[0]);
+
+		JButton saveButton = new JButton(new ImageIcon("disk.png"));
+		saveButton.setToolTipText("Save current file");
+		saveButton.addActionListener(saveMenuItem.getActionListeners()[0]);
+
+		JButton saveAsButton = new JButton(new ImageIcon("disk_multiple.png"));
+		saveAsButton.setToolTipText("Save as a new file");
+		saveAsButton.addActionListener(saveAsMenuItem.getActionListeners()[0]);
+
+		toolBar.add(openButton);
+		toolBar.add(saveButton);
+		toolBar.add(saveAsButton);
 
 		textArea = new JTextArea();
 		textArea.setAlignmentX(JTextArea.LEFT_ALIGNMENT);
