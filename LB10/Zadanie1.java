@@ -24,6 +24,7 @@ public class Zadanie1 implements ActionListener {
 
         frame.add(label);
         frame.add(button);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 
