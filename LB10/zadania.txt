@@ -1,0 +1,45 @@
+Zadanie 1.
+
+Napisz aplikację posiadającą przycisk (Button) i etykietę (Label). Po naciśnięciu przycisku na etykiecie powinien pojawiać się napis “Hello World”.
+
+
+Zadanie 2.
+
+Napisz kalkulator, którego kontrolki będą znajdowały się w układzie siatki (GridPane):
+
+W pierwszym wierszu powinny znaleźć się kolejno
+
+pole tekstowe (TextField) zawierające lewy czynnik działania,
+
+rozwijana lista (ChoiceBox) zawierająca działania: +, -, *, /,
+
+pole tekstowe (TextField) zawierające prawy czynnik działania,
+
+etykietę (Label) zawierającą napis “=”,
+
+nieedytowalne pole tekstowe (TextField), w którym pojawi się wynik działania,
+
+W drugim wierszu, przez całą jego długość powinien pojawić się przycisk (Button), którego naciśnięcie spowoduje wyświetlenie wyniku. Liczby należy traktować jako Double.
+
+Jeżeli pojawi się dzielenie przez zero, należy wyświetlić komunikat (Alert).
+
+
+Zadanie 3a.
+
+Napisz edytor tekstu, którego elementy będą znajdowały się w układzie kolumnowym (VBox). Powinny w nim znajdować się kolejno: menu (MenuBar), przybornik (ToolBar) oraz pole tekstowe (TextArea).
+
+W menu automatycznie została umieszczona pozycja “File > Close” (MenuItem), oprogramuj ją tak, aby zamykała program.
+
+
+Zadanie 3b.
+
+Dodaj do menu pozycję File > Open, która otworzy okno wyboru plików. Program powinien wyświetlić wybrany plik w polu tekstowym.
+
+Dodaj do menu pozycję File > Save as, która otworzy okno wyboru plików. Program powinien zapisać zawartość pola tekstowego do wybranego pliku.
+
+
+Zadanie 3c.
+
+Dodaj do menu pozycję File > Save, która, jeżeli został otwarty plik, zapisze zawartość pola tekstowego do tego pliku, a w przeciwnym razie zadziała jak Save as.
+
+Dodaj do przybornika trzy przyciski odpowiadające akcjom Open, Save i Save as. Ustaw im odpowiednie ikony i podpowiedzi (ToolTip) i zaprogramuj je zgodnie z przeznaczeniem.
