@@ -6,13 +6,13 @@ public class Ball extends JLabel {
 	public static int size = 16;
 	public static int speed = 1;
 
-	public Ball(Paddle paddle) {
-		init(paddle);
+	public Ball(Paddle paddle, int index) {
+		init(paddle, index);
 	}
 
-	private void init(Paddle paddle) {
+	private void init(Paddle paddle, int index) {
 		setIcon(new ImageIcon("ball.png"));
-		this.x = (int) (paddle.getX() + paddle.getWidth() / 2f);
+		this.x = (int) (paddle.getX() + paddle.getWidth() / Globals.BALL_COUNT * index);
 		this.y = (int) (paddle.getY() - 20);
 		this.xVelocity = speed;
 		this.yVelocity = -speed;
