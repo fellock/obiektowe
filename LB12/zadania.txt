@@ -1,0 +1,31 @@
+Zadanie 1.
+
+Napisz metodę statyczną, która przyjmie jako parametry listę obiektów oraz obiekt Class. Metoda powinna zwrócić listę obiektów, które należą do wskazanej klasy.
+
+Następnie zmodyfikuj metodę tak, aby filtrowała obiekty, które dziedziczą (bezpośrednio lub pośrednio) po wskazanej klasie.
+
+
+Zadanie 2.
+
+Napisz klasę szablonową SortedList implementującą interfejs List. Lista powinna posiadać prywatny obiekt ArrayList. Zaimplementuj metody add, get oraz size, aby komunikowały się bezpośrednio z prywatną listą i przetestuj działanie.
+
+Następnie zmodyfikuj metodę add tak, aby wstawiała nowy element tak, aby nie naruszało to posortowania listy. Wykorzystaj algorytm divide and conquer.
+
+
+Zadanie 3.
+
+Napisz predykat, który porówna, czy testowana zmienna znajduje się w otwartym przedziale, zdefiniowanym jego granicami.
+
+Korzystając z niego napisz metodę statyczną, która dla tablicy oraz granic zakresu danych typem szablonowym zwróci liczbę elementów w tej tablicy, spełniających warunek predykatu.
+
+
+Zadanie 4.
+
+Napisz komparator, który porówna dwie kolekcje pod względem liczby ich elementów. Następnie zmodyfikuj go tak, aby przyjmował wyłącznie kolekcje liczb i porównywał je pod względem ich sumy.
+
+
+Zadanie 5.
+
+Napisz metodę statyczną, która przyjmie listę elementów typu szablonowego, obiekt typu szablonowego i pozycję. Metoda powinna zwrócić listę z dodatkowym elementem wstawionym w żądanym miejscu.
+
+Następnie napisz analogiczną metodę, w której lista zostanie zastąpiona tablicą.
