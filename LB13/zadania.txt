@@ -1,0 +1,16 @@
+Napisz program umożliwiający sieciową grę w kółko i krzyżyk. Program powinien składać się z serwera przekazującego graczom wzajemnie ich ruchy, klienta, który łączy się z serwerem, przesyła i odbiera od niego informacje przeznaczone dla jednego z graczy, a także z graficznego interfejsu prezentującego aktualny stan gry. Wszystkie elementy powinny znaleźć się w tej samej aplikacji.
+
+
+Program powinien być wyposażony w dwa okna: okno połączenia oraz okno gry. Po włączeniu programu widoczne powinno być wyłącznie okno połączenia. Powinno ono zawierać pole tekstowe zatytułowane “Address” oraz dwa przyciski: “Create game” i “Join game”.
+
+
+W przypadku wyboru “Create game” program powinien uruchomić serwer sieciowy na wybranym porcie, połączyć z tym serwerem swojego klienta oraz oczekiwać na połączenie drugiego gracza.
+
+
+W przypadku wyboru “Join game” program powinien dołączyć do serwera działającego pod adresem podanym w polu “Address”. W momencie, gdy obu graczy będzie połączonych, należy wyświetlić okno gry.
+
+
+Gra powinna odbywać się w turach podczas których tylko jeden z graczy może wykonać ruch, a drugi oczekuje. Rozpoczyna zawsze gracz, który utworzył grę. Gracze powinni widzieć jako swój symbol “X”, a jako symbol przeciwnika “O”.
+
+
+Po zakończonej grze gracz powinien otrzymać informację o wyniku gry (zwycięstwo, porażka, remis). Okno gry powinno zostać zamknięte, a wszystkie połączenia sieciowe zakończone. Program powinien umożliwiać wykonanie ponownego połączenia bez restartowania.a
